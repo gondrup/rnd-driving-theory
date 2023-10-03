@@ -24,7 +24,7 @@ const TEST_ANSWERS = [
 const Answer = function ({title, correct, answerGiven, selected, onPress}) {
   let backgroundColor = 'white'
   let answerGivenStyle, selectedStyle
-  let icon
+  let icon, iconStyle = {}
 
   if (answerGiven) {
     backgroundColor = (selected || correct) ? 'white' : '#f8f8f8'
@@ -37,11 +37,14 @@ const Answer = function ({title, correct, answerGiven, selected, onPress}) {
 
       if (!correct) {
         icon = 'close'
+        iconStyle.backgroundColor = '#ff716a'
+        iconStyle.color = '#fff'
       }
     }
 
     if (correct) {
       icon = 'check'
+      iconStyle.backgroundColor = '#ffcc00'
     }
   }
 
@@ -58,7 +61,7 @@ const Answer = function ({title, correct, answerGiven, selected, onPress}) {
         },
       ]}>
       <Text style={[styles.defaultText, styles.answerText]}>{title}</Text>
-      {answerGiven && <AntDesign style={styles.answerIcon} name={icon} size={18} color="black" />}
+      {answerGiven && (selected || correct) && <AntDesign style={[styles.answerIcon, iconStyle]} name={icon} size={14} />}
 
     </Pressable>
   );
@@ -124,19 +127,24 @@ const styles = StyleSheet.create({
     flex: 1
   },
   answer: {
-      flex: 1,
-      flexDirection: 'row',
-      padding: 20,
-      marginBottom: 10,
-      backgroundColor: '#fff'
+    flex: 1,
+    flexDirection: 'row',
+    padding: 20,
+    marginBottom: 10,
+    backgroundColor: '#fff'
   },
   answerText: {
     flex: 7,
     justifyContent: 'flex-start',
   },
   answerIcon: {
-    flex: 1,
     justifyContent: 'flex-end',
+    borderRadius: 5,
+    padding: 5,
+    width: 26,
+    fontWeight: 800,
+    margin: 0,
+    backgroundColor: '#f1f0f0',
   },
   navContainer: {
     flex: 2,
