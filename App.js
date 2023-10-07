@@ -1,25 +1,7 @@
-import { useState } from 'react';
-import { StatusBar, StyleSheet, Text, View, FlatList, Pressable, Button } from 'react-native';
-import { AntDesign } from '@expo/vector-icons'; 
-
-const TEST_ANSWERS = [
-  {
-    text: 'High-sided vehicles',
-    correct: false,
-  },
-  {
-    text: 'Cyclists',
-    correct: false,
-  },
-  {
-    text: 'Cars',
-    correct: true,
-  },
-  {
-    text: 'Motorcyclists',
-    correct: false,
-  },
-];
+import { useState } from 'react'
+import { StatusBar, StyleSheet, Text, View, FlatList, Pressable, Button } from 'react-native'
+import { AntDesign } from '@expo/vector-icons'
+import questions from './questions.json'
 
 const Answer = function ({title, correct, answerGiven, selected, onPress}) {
   let backgroundColor = 'white'
@@ -67,6 +49,9 @@ const Answer = function ({title, correct, answerGiven, selected, onPress}) {
   );
 };
 
+// 1. Move the <View> from App into it's own component
+// 2. Remove the [selectedAnswer, setSelectedAnswer] state and use a prop instead based on the overall progress of answers (new parent object)
+
 export default function App() {
   const [selectedAnswer, setSelectedAnswer] = useState(null)
 
@@ -74,25 +59,25 @@ export default function App() {
     <>
       <View style={styles.container}>
         <View style={styles.questionContainer}>
-          <Text style={styles.defaultText}>Which vehicles are least likely to be affected by side wind?</Text>
+          <Text style={styles.defaultText}>{questions[0].text}</Text>
         </View>
         <View style={styles.answersContainer}>
           <Text style={[styles.defaultText, {marginBottom: 20}]}>Select one answer</Text>
           <FlatList
             style={styles.answers}
-            data={TEST_ANSWERS}
+            data={questions[0].answers}
             renderItem={({item}) => <Answer
               title={item.text}
-              correct={item.correct}
+              correct={questions[0].correctAnswer === questions[0].answers.indexOf(item)}
               answerGiven={selectedAnswer !== null}
-              selected={selectedAnswer === TEST_ANSWERS.indexOf(item)}
-              onPress={() => {setSelectedAnswer(TEST_ANSWERS.indexOf(item))}} />}
+              selected={selectedAnswer === questions[0].answers.indexOf(item)}
+              onPress={() => {selectedAnswer === null && setSelectedAnswer(questions[0].answers.indexOf(item))}} />}
             />
         </View>
         <View style={styles.navContainer}>
-          <Pressable style={[styles.defaultPressable, styles.navButton]}>
+          {selectedAnswer !== null && <Pressable style={[styles.defaultPressable, styles.navButton]}>
             <Text style={[styles.navButtonText, styles.defaultText]}>Next</Text>
-          </Pressable>
+          </Pressable>}
         </View>
       </View>
       <StatusBar style="auto" />
