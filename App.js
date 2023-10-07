@@ -3,6 +3,26 @@ import { StatusBar, StyleSheet, Text, View, FlatList, Pressable, Button } from '
 import { AntDesign } from '@expo/vector-icons'
 import questions from './questions.json'
 
+const AnsweredQuestions = function () {
+  this.answered = []
+
+  this.add = (questionKey, answerKey) => {
+    this.answered.push({questionKey: questionKey, answerKey: answerKey})
+  }
+
+  this.isAnswered = (questionKey) => {
+    for (let i in this.answered) {
+      console.log('|_ question ' + questionKey + ' ?........')
+      if (parseInt(this.answered[i].questionKey) === parseInt(questionKey)) {
+        console.log('|_ question ' + questionKey + ' is answered')
+        return true
+      }
+    }
+    return false
+  }
+}
+const answeredQuestions = new AnsweredQuestions();
+
 const Answer = function ({title, correct, answerGiven, selected, onPress}) {
   let backgroundColor = 'white'
   let answerGivenStyle, selectedStyle
@@ -46,40 +66,77 @@ const Answer = function ({title, correct, answerGiven, selected, onPress}) {
       {answerGiven && (selected || correct) && <AntDesign style={[styles.answerIcon, iconStyle]} name={icon} size={14} />}
 
     </Pressable>
-  );
-};
+  )
+}
 
-// 1. Move the <View> from App into it's own component
-// 2. Remove the [selectedAnswer, setSelectedAnswer] state and use a prop instead based on the overall progress of answers (new parent object)
-
-export default function App() {
-  const [selectedAnswer, setSelectedAnswer] = useState(null)
-
+const Question = function({question, selectedAnswer, onSelect, onNext}) {
   return (
-    <>
-      <View style={styles.container}>
+    <View style={styles.container}>
         <View style={styles.questionContainer}>
-          <Text style={styles.defaultText}>{questions[0].text}</Text>
+          <Text style={styles.defaultText}>{question.text}</Text>
         </View>
         <View style={styles.answersContainer}>
           <Text style={[styles.defaultText, {marginBottom: 20}]}>Select one answer</Text>
           <FlatList
             style={styles.answers}
-            data={questions[0].answers}
+            data={question.answers}
             renderItem={({item}) => <Answer
               title={item.text}
-              correct={questions[0].correctAnswer === questions[0].answers.indexOf(item)}
+              correct={question.correctAnswer === question.answers.indexOf(item)}
               answerGiven={selectedAnswer !== null}
-              selected={selectedAnswer === questions[0].answers.indexOf(item)}
-              onPress={() => {selectedAnswer === null && setSelectedAnswer(questions[0].answers.indexOf(item))}} />}
+              selected={selectedAnswer === question.answers.indexOf(item)}
+              onPress={() => {onSelect(question.answers.indexOf(item))}} />}
             />
         </View>
         <View style={styles.navContainer}>
-          {selectedAnswer !== null && <Pressable style={[styles.defaultPressable, styles.navButton]}>
-            <Text style={[styles.navButtonText, styles.defaultText]}>Next</Text>
+          {selectedAnswer !== null && <Pressable 
+            style={[styles.defaultPressable, styles.navButton]} 
+            onPress={onNext}>
+              <Text style={[styles.navButtonText, styles.defaultText]}>Next</Text>
           </Pressable>}
         </View>
       </View>
+  )
+}
+
+// 1. Move the <View> from App into it's own component
+// 2. Remove the [selectedAnswer, setSelectedAnswer] state and use a prop instead based on the overall progress of answers (new parent object)
+
+export default function App() {
+  const [question, setQuestion] = useState(questions[0])
+  const [selectedAnswer, setSelectedAnswer] = useState(null)
+
+  const setNextQuestion = () => {
+    console.log('setting next question')
+
+    for (let i in questions) {
+      console.log('question ' + i + ' ?...')
+      if (!answeredQuestions.isAnswered(i)) {
+        console.log('setting question ' + i)
+        setSelectedAnswer(null)
+        setQuestion(questions[i])
+        break;
+      } else {
+        console.log('not setting question ' + i + ' already answered')
+      }
+    }
+  }
+
+  return (
+    <>
+      <Question
+        question={question}
+        selectedAnswer={selectedAnswer}
+        onSelect={(answerKey) => {
+          console.log('selected answer ' + answerKey)
+          if (selectedAnswer === null) {
+            console.log('not already selected, setting selected answer ' + answerKey)
+            setSelectedAnswer(answerKey)
+            answeredQuestions.add(questions.indexOf(question), answerKey)
+          }
+        }}
+        onNext={setNextQuestion}
+      />
       <StatusBar style="auto" />
     </>
   );
