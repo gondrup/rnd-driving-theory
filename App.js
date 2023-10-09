@@ -1,7 +1,32 @@
 import { useState } from 'react'
-import { StatusBar, StyleSheet, Text, View, FlatList, Pressable, Button } from 'react-native'
+import { StatusBar, StyleSheet, Text, View, FlatList, Pressable, Image } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
 import questions from './questions.json'
+
+const questionImages = {
+  'q0': require('./assets/questions/q0.gif'),
+  'q10': require('./assets/questions/q10.gif'),
+  'q11': require('./assets/questions/q11.gif'),
+  'q12': require('./assets/questions/q12.gif'),
+  'q15': require('./assets/questions/q15.gif'),
+  'q17': require('./assets/questions/q17.gif'),
+  'q18': require('./assets/questions/q18.gif'),
+  'q20': require('./assets/questions/q20.gif'),
+  'q21': require('./assets/questions/q21.gif'),
+  'q22': require('./assets/questions/q22.gif'),
+  'q23': require('./assets/questions/q23.gif'),
+  'q24': require('./assets/questions/q24.gif'),
+  'q26': require('./assets/questions/q26.gif'),
+  'q31': require('./assets/questions/q31.gif'),
+  'q36': require('./assets/questions/q36.gif'),
+  'q46': require('./assets/questions/q46.gif'),
+  'q5': require('./assets/questions/q5.gif'),
+  'q8': require('./assets/questions/q8.gif'),
+  'q9a0': require('./assets/questions/q9a0.gif'),
+  'q9a1': require('./assets/questions/q9a1.gif'),
+  'q9a2': require('./assets/questions/q9a2.gif'),
+  'q9a3': require('./assets/questions/q9a3.gif'),
+}
 
 const AnsweredQuestions = function () {
   this.answered = []
@@ -12,9 +37,7 @@ const AnsweredQuestions = function () {
 
   this.isAnswered = (questionKey) => {
     for (let i in this.answered) {
-      console.log('|_ question ' + questionKey + ' ?........')
       if (parseInt(this.answered[i].questionKey) === parseInt(questionKey)) {
-        console.log('|_ question ' + questionKey + ' is answered')
         return true
       }
     }
@@ -23,7 +46,7 @@ const AnsweredQuestions = function () {
 }
 const answeredQuestions = new AnsweredQuestions();
 
-const Answer = function ({title, correct, answerGiven, selected, onPress}) {
+const Answer = function ({answer, correct, answerGiven, selected, onPress}) {
   let backgroundColor = 'white'
   let answerGivenStyle, selectedStyle
   let icon, iconStyle = {}
@@ -50,6 +73,11 @@ const Answer = function ({title, correct, answerGiven, selected, onPress}) {
     }
   }
 
+  let img = null
+  if ('img' in answer) {
+    img = questionImages[answer.img]
+  }
+
   return (
     <Pressable
       onPress={onPress}
@@ -62,7 +90,8 @@ const Answer = function ({title, correct, answerGiven, selected, onPress}) {
           backgroundColor: pressed ? '#f8f8f8' : backgroundColor,
         },
       ]}>
-      <Text style={[styles.defaultText, styles.answerText]}>{title}</Text>
+      { img && <Image style={styles.answerImage} source={img} /> }
+      { !img && <Text style={[styles.defaultText, styles.answerText]}>{answer.text}</Text> }
       {answerGiven && (selected || correct) && <AntDesign style={[styles.answerIcon, iconStyle]} name={icon} size={14} />}
 
     </Pressable>
@@ -70,10 +99,18 @@ const Answer = function ({title, correct, answerGiven, selected, onPress}) {
 }
 
 const Question = function({question, selectedAnswer, onSelect, onNext}) {
+  let img = null
+  let textStyle
+  if ('img' in question) {
+    img = questionImages[question.img]
+    textStyle = {flex: 3}
+  }
+
   return (
     <View style={styles.container}>
         <View style={styles.questionContainer}>
-          <Text style={styles.defaultText}>{question.text}</Text>
+          <Text style={[styles.defaultText, styles.questionText, textStyle]}>{question.text}</Text>
+          { img && <Image style={styles.questionImage} source={img} />}
         </View>
         <View style={styles.answersContainer}>
           <Text style={[styles.defaultText, {marginBottom: 20}]}>Select one answer</Text>
@@ -81,7 +118,7 @@ const Question = function({question, selectedAnswer, onSelect, onNext}) {
             style={styles.answers}
             data={question.answers}
             renderItem={({item}) => <Answer
-              title={item.text}
+              answer={item}
               correct={question.correctAnswer === question.answers.indexOf(item)}
               answerGiven={selectedAnswer !== null}
               selected={selectedAnswer === question.answers.indexOf(item)}
@@ -99,25 +136,16 @@ const Question = function({question, selectedAnswer, onSelect, onNext}) {
   )
 }
 
-// 1. Move the <View> from App into it's own component
-// 2. Remove the [selectedAnswer, setSelectedAnswer] state and use a prop instead based on the overall progress of answers (new parent object)
-
 export default function App() {
   const [question, setQuestion] = useState(questions[0])
   const [selectedAnswer, setSelectedAnswer] = useState(null)
 
   const setNextQuestion = () => {
-    console.log('setting next question')
-
     for (let i in questions) {
-      console.log('question ' + i + ' ?...')
       if (!answeredQuestions.isAnswered(i)) {
-        console.log('setting question ' + i)
         setSelectedAnswer(null)
         setQuestion(questions[i])
         break;
-      } else {
-        console.log('not setting question ' + i + ' already answered')
       }
     }
   }
@@ -128,9 +156,7 @@ export default function App() {
         question={question}
         selectedAnswer={selectedAnswer}
         onSelect={(answerKey) => {
-          console.log('selected answer ' + answerKey)
           if (selectedAnswer === null) {
-            console.log('not already selected, setting selected answer ' + answerKey)
             setSelectedAnswer(answerKey)
             answeredQuestions.add(questions.indexOf(question), answerKey)
           }
@@ -157,11 +183,22 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   questionContainer: {
-    flex: 1,
+    flex: 2,
+    flexDirection: 'row',
     padding: sectionPadding,
   },
+  questionText: {
+    justifyContent: 'flex-start',
+    flex: 1,
+  },
+  questionImage: {
+    justifyContent: 'flex-end',
+    flex: 2,
+    height: 70,
+    resizeMode: 'contain',
+  },
   answersContainer: {
-    flex: 14,
+    flex: 16,
     backgroundColor: '#f1f0f0',
     padding: sectionPadding,
   },
@@ -179,11 +216,18 @@ const styles = StyleSheet.create({
     flex: 7,
     justifyContent: 'flex-start',
   },
+  answerImage: {
+    justifyContent: 'flex-start',
+    flex: 7,
+    height: 40,
+    resizeMode: 'contain',
+  },
   answerIcon: {
     justifyContent: 'flex-end',
     borderRadius: 5,
     padding: 5,
     width: 24,
+    height: 24,
     fontWeight: 800,
     margin: 0,
     backgroundColor: '#f1f0f0',

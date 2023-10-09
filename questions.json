@@ -1,21 +1,520 @@
 [
     {
-        "text": "Which vehicles are least likely to be affected by side wind?",
+        "text": "Who should obey diamond-shaped traffic signs?",
+        "img": "q0",
         "answers": [
-            {
-                "text": "High-sided vehicles"
-            },
-            {
-                "text": "Cyclists"
-            },
-            {
-                "text": "Cars"
-            },
-            {
-                "text": "Motorcyclists"
-            }
+            {"text": "Bus drivers"},
+            {"text": "Lorry drivers"},
+            {"text": "Taxi drivers"},
+            {"text": "Tram drivers"}
         ],
-        "correctAnswer": 2,
-        "explaination": ""
+        "correctAnswer": 3
+    },
+    {
+        "text": "How much can stopping distances increase in icy conditions?",
+        "answers": [
+            {"text": "Five times"},
+            {"text": "Ten times"},
+            {"text": "Three times"},
+            {"text": "Two times"}
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "text": "What hazard should you be especially aware of if you're turning left into a side road?",
+        "answers": [
+            {"text": "One-way street"},
+            {"text": "Parked vehicles"},
+            {"text": "Pedestrians"},
+            {"text": "Traffic congestion"}
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "text": "How will a school crossing patrol signal you to stop?",
+        "answers": [
+            {"text": "By displaying a 'stop' sign"},
+            {"text": "By displaying a red light"},
+            {"text": "By giving you an arm signal"},
+            {"text": "By pointing to children waiting to cross"}
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "text": "You're travelling in very heavy rain. How is this likely to affect your overall stopping distance?",
+        "answers": [
+            {"text": "It will be doubled"},
+            {"text": "It will be halved"},
+            {"text": "It will be no different"},
+            {"text": "It will be ten times greater"}
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "text": "What's the meaning of this sign?",
+        "img": "q5",
+        "answers": [
+            {"text": "National speed limit"},
+            {"text": "No entry"},
+            {"text": "School crossing patrol"},
+            {"text": "Waiting restrictions"}
+        ],
+        "correctAnswer": 3
+    },
+    {
+        "text": "You're driving at night and looking for somewhere to park. When may you park on the right-hand side of the road?",
+        "answers": [
+            {"text": "When you have your sidelights on"},
+            {"text": "When you're in a one-way street"},
+            {"text": "When you're more than 10 metres (32 feet) from a junction"},
+            {"text": "When you're under a lamppost"}
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "text": "You're approaching a busy junction. What should you do when, at the last moment, you realise you're in thewrong lane?",
+        "answers": [
+            {"text": "Continue in that lane"},
+            {"text": "Force your way into the lane you need"},
+            {"text": "Stop until the area has cleared"},
+            {"text": "Use arm signals to help you change lane"}
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "text": "What does this sign mean?",
+        "img": "q8",
+        "answers": [
+            {"text": "'20 cars only' parking zone"},
+            {"text": "Maximum speed limit with traffic calming"},
+            {"text": "Minimum speed limit with traffic calming"},
+            {"text": "Only 20 cars allowed at any one time"}
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "text": "Which sign means 'no entry'?",
+        "answers": [
+            {"text": "[image]", "img": "q9a0"},
+            {"text": "[image]", "img": "q9a1"},
+            {"text": "[image]", "img": "q9a2"},
+            {"text": "[image]", "img": "q9a3"}
+        ],
+        "correctAnswer": 3
+    },
+    {
+        "text": "What does this sign mean?",
+        "img": "q10",
+        "answers": [
+            {"text": "Cattle grid ahead"},
+            {"text": "Gated road ahead"},
+            {"text": "Level crossing with gate or barrier"},
+            {"text": "Level crossing without gate or barrier"}
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "text": "What does this sign mean?",
+        "img": "q11",
+        "answers": [
+            {"text": "Amber signal out of order"},
+            {"text": "New traffic lights ahead"},
+            {"text": "Temporary traffic lights ahead"},
+            {"text": "Traffic lights out of order"}
+        ],
+        "correctAnswer": 3
+    },
+    {
+        "text": "What does this line across the road at the entrance to a roundabout mean?",
+        "img": "q12",
+        "answers": [
+            {"text": "Give way to traffic from the right"},
+            {"text": "Stop at the line"},
+            {"text": "Traffic from the left has right of way"},
+            {"text": "You have right of way"}
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "text": "What should you do when you're approaching traffic lights that have been green for some time?",
+        "answers": [
+            {"text": "Accelerate hard"},
+            {"text": "Be ready to stop"},
+            {"text": "Brake hard"},
+            {"text": "Maintain your speed"}
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "text": "You're travelling behind a moped. What should you do if you want to turn left a short distance ahead?",
+        "answers": [
+            {"text": "Overtake the moped before the junction"},
+            {"text": "Pull alongside the moped and stay level until just before the junction"},
+            {"text": "Sound your horn as a warning and pull in front of the moped"},
+            {"text": "Stay behind until the moped has passed the junction"}
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "text": "What should you do if the red lights start flashing as you approach a level crossing?",
+        "img": "q15",
+        "answers": [
+            {"text": "Go over it carefully"},
+            {"text": "Go over it quickly"},
+            {"text": "Stop before the barrier"},
+            {"text": "Switch on your hazard warning lights"}
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "text": "You're on a motorway. What should you do if there's a red cross showing on the signs above your lane only?",
+        "answers": [
+            {"text": "Continue in that lane and look for further information"},
+            {"text": "Don't continue in that lane"},
+            {"text": "Pull onto the hard shoulder"},
+            {"text": "Stop and wait for an instruction to proceed"}
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "text": "You're travelling on a road that has road humps. What should you do when the driver in front is travelling more slowly than you?",
+        "img": "q17",
+        "answers": [
+            {"text": "Flash your headlights"},
+            {"text": "Overtake as soon as you can"},
+            {"text": "Slow down and stay behind"},
+            {"text": "Sound your horn"}
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "text": "What should you do as you approach this overhead bridge?",
+        "img": "q18",
+        "answers": [
+            {"text": "Be prepared to give way to large vehicles in the middle of the road"},
+            {"text": "Find another route; this one is only for high vehicles"},
+            {"text": "Move across to the right-hand side before going through"},
+            {"text": "Move out to the centre of the road before going through"}
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "text": "You need to top up your battery with distilled water. What level should you fill it to?",
+        "answers": [
+            {"text": "Halfway up the battery"},
+            {"text": "Just above the cell plates"},
+            {"text": "Just below the cell plates"},
+            {"text": "The top of the battery"}
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "text": "How should you drive in areas with traffic-calming measures?",
+        "img": "q20",
+        "answers": [
+            {"text": "At a reduced speed"},
+            {"text": "At the speed limit"},
+            {"text": "In the centre of the road"},
+            {"text": "With headlights on dipped beam"}
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "text": "Why should you slow down as you approach this hazard?",
+        "img": "q21",
+        "answers": [
+            {"text": "Because it's hard to see to the right"},
+            {"text": "Because of animals crossing"},
+            {"text": "Because of approaching traffic"},
+            {"text": "Because of the level crossing"}
+        ],
+        "correctAnswer": 3
+    },
+    {
+        "text": "What does it mean if you see this signal on the motorway?",
+        "img": "q22",
+        "answers": [
+            {"text": "All vehicles use the hard shoulder"},
+            {"text": "Leave the motorway at the next exit"},
+            {"text": "Sharp bend to the left ahead"},
+            {"text": "Stop: all lanes ahead closed"}
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "text": "What does this sign mean?",
+        "img": "q23",
+        "answers": [
+            {"text": "Two-way traffic crosses a one-way road"},
+            {"text": "Two-way traffic crosses a two-way road"},
+            {"text": "Two-way traffic over a bridge"},
+            {"text": "Two-way traffic straight ahead"}
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "text": "Traffic officers operate on motorways and some primary routes in England and Wales. What are they authorised to do?",
+        "img": "q24",
+        "answers": [
+            {"text": "Issue fixed penalty notices"},
+            {"text": "Repair broken-down vehicles on the motorway"},
+            {"text": "Stop and arrest drivers who break the law"},
+            {"text": "Stop and direct anyone on a motorway"}
+        ],
+        "correctAnswer": 3
+    },
+    {
+        "text": "Who's legally responsible for ensuring that a vehicle registration certificate (V5C) is updated?",
+        "answers": [
+            {"text": "The licensing authority"},
+            {"text": "The registered vehicle keeper"},
+            {"text": "The vehicle manufacturer"},
+            {"text": "Your insurance company"}
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "text": "What should you do when you're passing loose sheep on the road?",
+        "img": "q26",
+        "answers": [
+            {"text": "Briefly sound your horn"},
+            {"text": "Go very slowly"},
+            {"text": "Herd them to the side of the road"},
+            {"text": "Pass quickly but quietly"}
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "text": "What could you do to help injured people at an incident?",
+        "answers": [
+            {"text": "Give them a warm drink"},
+            {"text": "Give them something to eat"},
+            {"text": "Keep them on the move by walking them around"},
+            {"text": "Keep them warm and comfortable"}
+        ],
+        "correctAnswer": 3
+    },
+    {
+        "text": "You arrive at an incident. A pedestrian is bleeding heavily from a leg wound. The leg isn't broken and there's nothing in the wound. How could you help?",
+        "answers": [
+            {"text": "Apply firm pressure over the wound"},
+            {"text": "Dab the wound to stop the bleeding"},
+            {"text": "Give them a warm drink"},
+            {"text": "Keep the casualty's legs flat on the ground"}
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "text": "There are objects hanging from your interior mirror. Why could this be a hazard?",
+        "answers": [
+            {"text": "Your radio reception might be affected"},
+            {"text": "Your sun visor might get tangled"},
+            {"text": "Your view could be obstructed"},
+            {"text": "Your windscreen could mist up more easily"}
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "text": "What will help you to move off on a snowy surface?",
+        "answers": [
+            {"text": "Using a high engine speed"},
+            {"text": "Using a higher gear than normal"},
+            {"text": "Using the car's lowest gear"},
+            {"text": "Using the parking brake and footbrake together"}
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "text": "You're driving in a built-up area that has traffic-calming measures. What should you do when you approach a road hump?",
+        "img": "q31",
+        "answers": [
+            {"text": "Check your mirror and slow down"},
+            {"text": "Move across to the left-hand side of the road"},
+            {"text": "Stop and check both pavements"},
+            {"text": "Wait for any pedestrians to cross"}
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "text": "What should you do if a doctor prescribes drugs that are likely to affect your driving?",
+        "answers": [
+            {"text": "Avoid driving on motorways"},
+            {"text": "Get someone else to drive"},
+            {"text": "Never drive at more than 30 mph"},
+            {"text": "Only drive if someone is with you"}
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "text": "You've stopped at a pelican crossing. What should you do if a disabled person is crossing slowly in front of you and the lights change to green?",
+        "answers": [
+            {"text": "Drive in front of them"},
+            {"text": "Edge forward slowly"},
+            {"text": "Sound your horn"},
+            {"text": "Wait for them to finish crossing"}
+        ],
+        "correctAnswer": 3
+    },
+    {
+        "text": "It's very windy. What should you do if you're behind a motorcyclist who's overtaking a high-sided vehicle?",
+        "answers": [
+            {"text": "Keep close to the motorcyclist"},
+            {"text": "Keep well back"},
+            {"text": "Overtake the motorcyclist immediately"},
+            {"text": "Stay level with the motorcyclist"}
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "text": "You're driving on the motorway in windy conditions. What should you do as you overtake a high-sided vehicle?",
+        "answers": [
+            {"text": "Be wary of a sudden gust"},
+            {"text": "Drive alongside very closely"},
+            {"text": "Expect normal conditions"},
+            {"text": "Increase your speed"}
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "text": "You want to park and you see this sign. What should you do on the days and times shown?",
+        "img": "q36",
+        "answers": [
+            {"text": "Park in a bay and not pay"},
+            {"text": "Park in a bay and pay"},
+            {"text": "Park on yellow lines and not pay"},
+            {"text": "Park on yellow lines and pay"}
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "text": "How far are you allowed to reverse?",
+        "answers": [
+            {"text": "As far as it takes to reverse around a corner"},
+            {"text": "No further than is necessary"},
+            {"text": "No more than a car's length"},
+            {"text": "The length of a residential street"}
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "text": "What would suggest you're driving on an icy road?",
+        "answers": [
+            {"text": "There's less engine noise"},
+            {"text": "There's less transmission noise"},
+            {"text": "There's less tyre noise"},
+            {"text": "There's less wind noise"}
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "text": "You've been involved in an argument that's made you feel angry. What should you do before starting your journey?",
+        "answers": [
+            {"text": "Calm down"},
+            {"text": "Have an alcoholic drink"},
+            {"text": "Open a window"},
+            {"text": "Turn on your radio"}
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "text": "What legal requirement must be met by a newly qualified driver?",
+        "answers": [
+            {"text": "They must be accompanied on their first motorway journey"},
+            {"text": "They must display green L plates"},
+            {"text": "They must have a new photograph taken for their full licence"},
+            {"text": "They must have valid motor insurance"}
+        ],
+        "correctAnswer": 3
+    },
+    {
+        "text": "Where's the safest place to park your vehicle at night?",
+        "answers": [
+            {"text": "In a garage"},
+            {"text": "In a quiet car park"},
+            {"text": "Near a red route"},
+            {"text": "On a busy road"}
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "text": "You service your own vehicle. How should you dispose of the old engine oil?",
+        "answers": [
+            {"text": "Pour it down a drain"},
+            {"text": "Put it in your dustbin"},
+            {"text": "Take it to a local-authority site"},
+            {"text": "Tip it into a hole in the ground"}
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "text": "What should you do before driving into a tunnel?",
+        "answers": [
+            {"text": "Close your sunroof"},
+            {"text": "Switch off your radio"},
+            {"text": "Switch on your windscreen wipers"},
+            {"text": "Take off your sunglasses"}
+        ],
+        "correctAnswer": 3
+    },
+    {
+        "text": "What should you do to avoid fuel spillage?",
+        "answers": [
+            {"text": "Check that you've used a locking filler cap"},
+            {"text": "Check that your filler cap is securely fastened"},
+            {"text": "Check that your fuel gauge is working"},
+            {"text": "Check that your tank is only three-quarters full"}
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "text": "On a vehicle, where would you find a catalytic converter?",
+        "answers": [
+            {"text": "In the air filter"},
+            {"text": "In the fuel tank"},
+            {"text": "On the cooling system"},
+            {"text": "On the exhaust system"}
+        ],
+        "correctAnswer": 3
+    },
+    {
+        "text": "You're driving towards this left-hand bend. What danger should you be anticipating?",
+        "img": "q46",
+        "answers": [
+            {"text": "A vehicle overtaking you"},
+            {"text": "Mud on the road"},
+            {"text": "Pedestrians walking towards you"},
+            {"text": "The road getting narrower"}
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "text": "What safety device must be fitted to a trailer braking system?",
+        "answers": [
+            {"text": "Breakaway cable"},
+            {"text": "Corner steadies"},
+            {"text": "Jockey wheel"},
+            {"text": "Stabiliser"}
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "text": "What must you do if poor health affects your driving?",
+        "answers": [
+            {"text": "Always drive accompanied"},
+            {"text": "Avoid using motorways"},
+            {"text": "Inform the licensing authority"},
+            {"text": "Inform your local police"}
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "text": "How should a load be carried on your roof rack?",
+        "answers": [
+            {"text": "Covered with plastic sheeting"},
+            {"text": "Loaded towards the rear of the vehicle"},
+            {"text": "Securely fastened with suitable restraints"},
+            {"text": "Visible in your exterior mirror"}
+        ],
+        "correctAnswer": 2
     }
 ]
