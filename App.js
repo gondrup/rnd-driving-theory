@@ -43,8 +43,20 @@ const AnsweredQuestions = function () {
     }
     return false
   }
+
+  this.getAnsweredCount = () => {
+    return this.answered.length
+  }
 }
 const answeredQuestions = new AnsweredQuestions();
+
+const Progress = function ({total, numAnswered}) {
+  return (
+    <View style={styles.progressContainer}>
+      <Text style={[styles.defaultText, styles.progressText]}>Progress: {numAnswered}/{total}</Text>
+    </View>
+  )
+}
 
 const Answer = function ({answer, correct, answerGiven, selected, onPress}) {
   let backgroundColor = 'white'
@@ -139,6 +151,7 @@ const Question = function({question, selectedAnswer, onSelect, onNext}) {
 export default function App() {
   const [question, setQuestion] = useState(questions[0])
   const [selectedAnswer, setSelectedAnswer] = useState(null)
+  const [numAnswered, setNumAnswered] = useState(0)
 
   const setNextQuestion = () => {
     for (let i in questions) {
@@ -152,6 +165,10 @@ export default function App() {
 
   return (
     <>
+      <Progress
+        total={questions.length}
+        numAnswered={numAnswered}
+        />
       <Question
         question={question}
         selectedAnswer={selectedAnswer}
@@ -159,6 +176,7 @@ export default function App() {
           if (selectedAnswer === null) {
             setSelectedAnswer(answerKey)
             answeredQuestions.add(questions.indexOf(question), answerKey)
+            setNumAnswered(answeredQuestions.getAnsweredCount())
           }
         }}
         onNext={setNextQuestion}
@@ -181,6 +199,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  progressContainer: {
+    padding: 20,
+    backgroundColor: '#000',
+  },
+  progressText: {
+    color: '#fff',
   },
   questionContainer: {
     flex: 2,

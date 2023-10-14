@@ -49,7 +49,7 @@
             {"text": "It will be ten times greater"}
         ],
         "correctAnswer": 0
-    },
+    }/*,
     {
         "text": "What's the meaning of this sign?",
         "img": "q5",
@@ -516,5 +516,5 @@
             {"text": "Visible in your exterior mirror"}
         ],
         "correctAnswer": 2
-    }
+    }*/
 ]
