@@ -47,12 +47,26 @@ const AnsweredQuestions = function () {
   this.getAnsweredCount = () => {
     return this.answered.length
   }
+
+  this.getAnsweredCorrectlyCount = () => {
+    return this.answered.reduce((acc, cur) => {
+      if (questions[cur.questionKey].correctAnswer === cur.answerKey) {
+        return acc + 1
+      }
+      return acc
+    }, 0)
+  }
 }
 const answeredQuestions = new AnsweredQuestions();
 
-const Progress = function ({total, numAnswered}) {
+const Progress = function ({show, total, numAnswered}) {
+  let showStyle
+  if (!show) {
+    showStyle = {display: 'none'}
+  }
+
   return (
-    <View style={styles.progressContainer}>
+    <View style={[styles.progressContainer, showStyle]}>
       <Text style={[styles.defaultText, styles.progressText]}>Progress: {numAnswered}/{total}</Text>
     </View>
   )
@@ -110,66 +124,94 @@ const Answer = function ({answer, correct, answerGiven, selected, onPress}) {
   )
 }
 
-const Question = function({question, selectedAnswer, onSelect, onNext}) {
+const Question = function({show, question, selectedAnswer, onSelect, onNext}) {
   let img = null
-  let textStyle
+  let textStyle, showStyle
   if ('img' in question) {
     img = questionImages[question.img]
     textStyle = {flex: 3}
   }
+  if (!show) {
+    showStyle = {display: 'none'}
+  }
 
   return (
-    <View style={styles.container}>
-        <View style={styles.questionContainer}>
-          <Text style={[styles.defaultText, styles.questionText, textStyle]}>{question.text}</Text>
-          { img && <Image style={styles.questionImage} source={img} />}
-        </View>
-        <View style={styles.answersContainer}>
-          <Text style={[styles.defaultText, {marginBottom: 20}]}>Select one answer</Text>
-          <FlatList
-            style={styles.answers}
-            data={question.answers}
-            renderItem={({item}) => <Answer
-              answer={item}
-              correct={question.correctAnswer === question.answers.indexOf(item)}
-              answerGiven={selectedAnswer !== null}
-              selected={selectedAnswer === question.answers.indexOf(item)}
-              onPress={() => {onSelect(question.answers.indexOf(item))}} />}
-            />
-        </View>
-        <View style={styles.navContainer}>
-          {selectedAnswer !== null && <Pressable 
-            style={[styles.defaultPressable, styles.navButton]} 
-            onPress={onNext}>
-              <Text style={[styles.navButtonText, styles.defaultText]}>Next</Text>
-          </Pressable>}
-        </View>
+    <View style={[styles.container, showStyle]}>
+      <View style={styles.questionContainer}>
+        <Text style={[styles.defaultText, styles.questionText, textStyle]}>{question.text}</Text>
+        { img && <Image style={styles.questionImage} source={img} />}
       </View>
+      <View style={styles.answersContainer}>
+        <Text style={[styles.defaultText, {marginBottom: 20}]}>Select one answer</Text>
+        <FlatList
+          style={styles.answers}
+          data={question.answers}
+          renderItem={({item}) => <Answer
+            answer={item}
+            correct={question.correctAnswer === question.answers.indexOf(item)}
+            answerGiven={selectedAnswer !== null}
+            selected={selectedAnswer === question.answers.indexOf(item)}
+            onPress={() => {onSelect(question.answers.indexOf(item))}} />}
+          />
+      </View>
+      <View style={styles.navContainer}>
+        {selectedAnswer !== null && <Pressable 
+          style={[styles.defaultPressable, styles.navButton]} 
+          onPress={onNext}>
+            <Text style={[styles.navButtonText, styles.defaultText]}>Next</Text>
+        </Pressable>}
+      </View>
+    </View>
+  )
+}
+
+const Result = function ({show, numAnswered, numCorrect}) {
+  let showStyle
+  if (!show) {
+    showStyle = {display: 'none'}
+  }
+
+  return (
+    <View style={[styles.resultContainer, showStyle]}>
+      <Text style={[styles.defaultText]}>Correct: {numCorrect} / {numAnswered}</Text>
+    </View>
   )
 }
 
 export default function App() {
+
+  const [showQuestions, setShowQuestions] = useState(true)
+  const [showResult, setShowResult] = useState(false)
+  
   const [question, setQuestion] = useState(questions[0])
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [numAnswered, setNumAnswered] = useState(0)
+  const [numCorrect, setNumCorrect] = useState(0)
 
   const setNextQuestion = () => {
     for (let i in questions) {
       if (!answeredQuestions.isAnswered(i)) {
         setSelectedAnswer(null)
         setQuestion(questions[i])
-        break;
+        return
       }
     }
+
+    setShowQuestions(false)
+    setShowResult(true)
+    setNumCorrect(answeredQuestions.getAnsweredCorrectlyCount())
   }
 
   return (
     <>
+      <StatusBar style="auto" />
       <Progress
+        show={showQuestions}
         total={questions.length}
         numAnswered={numAnswered}
         />
       <Question
+        show={showQuestions}
         question={question}
         selectedAnswer={selectedAnswer}
         onSelect={(answerKey) => {
@@ -180,8 +222,12 @@ export default function App() {
           }
         }}
         onNext={setNextQuestion}
-      />
-      <StatusBar style="auto" />
+        />
+      <Result
+        show={showResult}
+        numAnswered={numAnswered}
+        numCorrect={numCorrect}
+        />
     </>
   );
 }
@@ -256,6 +302,9 @@ const styles = StyleSheet.create({
     fontWeight: 800,
     margin: 0,
     backgroundColor: '#f1f0f0',
+  },
+  resultContainer: {
+    flex: 1,
   },
   navContainer: {
     flex: 2,
