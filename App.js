@@ -171,9 +171,14 @@ const Result = function ({show, numAnswered, numCorrect}) {
     showStyle = {display: 'none'}
   }
 
+  const pctCorrect = numCorrect / numAnswered * 100
+
   return (
     <View style={[styles.resultContainer, showStyle]}>
-      <Text style={[styles.defaultText]}>Correct: {numCorrect} / {numAnswered}</Text>
+      <Text style={[styles.defaultText, styles.resultTitleText]}>Theory Test Complete</Text>
+      <Text style={[styles.defaultText, styles.resultSubtitleText]}>Your Score</Text>
+      <Text style={[styles.defaultText, styles.resultPercentText]}>{ pctCorrect }%</Text>
+      <Text style={[styles.defaultText, styles.resultTotalText]}>{numCorrect} / {numAnswered}</Text>
     </View>
   )
 }
@@ -305,6 +310,21 @@ const styles = StyleSheet.create({
   },
   resultContainer: {
     flex: 1,
+    backgroundColor: '#f8d447',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  resultTitleText: {
+    fontSize: 30,
+  },
+  resultSubtitleText: {
+    fontSize: 16,
+  },
+  resultPercentText: {
+    fontSize: 80,
+  },
+  resultTotalText: {
+    fontSize: 14,
   },
   navContainer: {
     flex: 2,
